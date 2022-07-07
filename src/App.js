@@ -1,28 +1,54 @@
 import './App.css';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
-import { createContext , useEffect, useState} from 'react';
+import { createContext , useEffect, useState, useCallback} from 'react';
 import { boardDefault, generateWordSet } from './components/Words';
 import GameOver from './components/GameOver';
+import firebase from './components/Firebase';
+
 
 export const AppContext = createContext();
 
 function App() {
   const [board, setBoard] = useState(boardDefault);
   const  [currAttempt, setCurrAttempt] = useState({attempt: 0, letterPos: 0});
-
-  const correctWord = "RIGHT"
+  
   const [wordSet, setWordSet] = useState(new Set())
   const [disabledLetters, setDisabledLetter] = useState([]);
   const [gameOver, setGameOver] = useState({gameOver: false, guessedWord: false})  
-
+  const ref = firebase.firestore().collection("main").doc("hU8SS325pOLENz9hnNsv");
+  const [correctWord, setWordForServer] = useState(() => "");
+ 
+  const getServerWord = useCallback(() => {
+  
+    ref.get().then((doc) => {
+      if (doc.exists) {
+        setWordForServer(doc.data().fieldCheck.toUpperCase())
+          console.log("Document data:", doc.data().fieldCheck);
+      } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+      }
+  }).catch((error) => {
+      console.log("Error getting document:", error);
+  });
+  }, [ref])
+ 
 
   useEffect(() => {
     generateWordSet().then((words) => {
       setWordSet(words.wordSet);
     })
+    
 
-  }, [])
+    
+  }, []) 
+
+  useEffect(() => {
+    
+    getServerWord()
+    
+  }, [getServerWord]) 
 
   const onSelectLetter = (keyVal) => {
     if (currAttempt.letterPos > 4) return;
@@ -53,7 +79,6 @@ function App() {
       setCurrAttempt({attempt: currAttempt.attempt + 1, letterPos: 0} )
     } else {
       alert("Word Not Found")
-      console.log(wordSet)
     }
 
     if (currWord === correctWord) {
