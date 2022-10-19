@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
   background-color: #121212;
@@ -39,25 +43,30 @@ nav h1 {
 .board {
   width: 450px;
   height: 550px;
-  border: 1px solid black;
+  
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
 }
 
 .row {
-  flex: 33%;
+  
   display: flex;
   flex-direction: row;
-  margin: 5px;
+  justify-content: center;
+  gap: 5px;
 }
 
 .letter {
-  flex: 33%;
-  height: 100%;
+  width: 62px;
+  display: flex;
+  height: 62px;
+  flex-shrink: 0;
   border: 1px solid grey;
-  margin: 5px;
-  display: grid;
-  place-items: center;
+  
+  justify-content: center;
+  align-items: center;
   font-size: 30px;
   font-weight: bolder;
   color: white;
@@ -66,14 +75,17 @@ nav h1 {
 
 #correct {
   background-color: #528d4e;
+  border: 1px solid black;
 }
 
 #almost {
   background-color: #b49f39;
+  border: 1px solid black;
 }
 
 #error {
   background-color: #3a393c;
+  border: 1px solid black;
 }
 
 .keyboard {
