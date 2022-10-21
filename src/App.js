@@ -1,7 +1,7 @@
 import './App.css';
 import Board from './components/Board';
 import Keyboard from './components/Keyboard';
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState, useRef } from 'react';
 import { boardDefault, generateWordSet } from './components/Words';
 import GameOver from './components/GameOver';
 import { db } from './firebase-config'
@@ -16,6 +16,7 @@ function App() {
   const [wordSet, setWordSet] = useState(new Set())
   const [disabledLetters, setDisabledLetter] = useState([]);
   const [gameOver, setGameOver] = useState({ gameOver: false, guessedWord: false })
+  const newCustomWordleTextInputRef = useRef();
   
   
   useEffect(() => {
@@ -83,11 +84,13 @@ function App() {
 
 
   }
+
+  
   return (
     <div className="App">
       <nav>
         <h1>Wordle</h1>
-        <input type="text" />
+        <input type="text" ref={newCustomWordleTextInputRef} />
       </nav>
       <AppContext.Provider value={{
         board,
@@ -105,7 +108,7 @@ function App() {
       }}>
         <div className='game'>
           <Board />
-          {gameOver.gameOver ? <GameOver /> : < Keyboard />}
+          {gameOver.gameOver ? <GameOver /> : < Keyboard newCustomWordleTextInputRef={newCustomWordleTextInputRef} />}
         </div>
       </AppContext.Provider>
 

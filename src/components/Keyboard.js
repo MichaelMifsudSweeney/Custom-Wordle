@@ -3,13 +3,14 @@ import Key from './Key';
 import {AppContext} from "../App"
 import { v4 as uuidv4 } from 'uuid';
 
-function Keyboard() {
+function Keyboard({newCustomWordleTextInputRef}) {
   const { onEnter, onDelete, onSelectLetter,  disabledLetters} = useContext(AppContext);
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
   const handleKeyboard = useCallback((event) => {
+    if(document.activeElement === newCustomWordleTextInputRef.current) return
     if (event.key === "Enter") {
       onEnter();
     } else if (event.key === "Backspace") {
