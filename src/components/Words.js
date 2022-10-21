@@ -14,9 +14,7 @@ export const generateWordSet = async () => {
     .then((response) => response.text())
     .then((result) => {
         const wordArray = result.split("\n")
-        wordSet = new Set(wordArray)
-        console.log("generateWordSet has fired")
+        wordSet = new Set(wordArray) 
     });
-    console.log("returning wordset")
     return {wordSet};
 }
