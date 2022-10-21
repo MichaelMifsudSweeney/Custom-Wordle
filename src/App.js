@@ -8,7 +8,6 @@ import { db } from './firebase-config'
 import { collection, getDoc, doc } from 'firebase/firestore';
 
 export const AppContext = createContext();
-console.log(process.env)
 function App() {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
@@ -28,7 +27,6 @@ function App() {
   useEffect(() => {
     const wordId = window.location.pathname
     const cleanedWordId = wordId.substring(1);
-    console.log(cleanedWordId)
     const docRef = doc(db, "main", cleanedWordId);
     const getUsers = async () => {
       const docSnap = await getDoc(docRef);
