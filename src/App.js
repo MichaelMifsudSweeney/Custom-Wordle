@@ -5,8 +5,9 @@ import { createContext, useEffect, useState, useRef } from 'react';
 import { boardDefault, generateWordSet } from './components/Words';
 import GameOver from './components/GameOver';
 import { db } from './firebase-config'
-import { collection, getDoc, doc } from 'firebase/firestore';
-
+import { collection, getDoc, doc, setDoc } from 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid';
+import GeneratedLink from './components/GeneratedLink';
 export const AppContext = createContext();
 function App() {
   const [board, setBoard] = useState(boardDefault);
@@ -16,7 +17,8 @@ function App() {
   const [disabledLetters, setDisabledLetter] = useState([]);
   const [gameOver, setGameOver] = useState({ gameOver: false, guessedWord: false })
   const newCustomWordleTextInputRef = useRef();
-  
+  const [newWordle, setNewWordle] = useState("")
+  const [lastGeneratedWordleLink, setlastGeneratedWordleLink] = useState("localhost:3000/")
   
   useEffect(() => {
     generateWordSet().then((words) => {
@@ -83,12 +85,23 @@ function App() {
 
   }
 
+  const submitNewWordle = async () => {
+    let wordleId = uuidv4()
+    await setDoc(doc(db, "main", wordleId), {
+      word: newWordle.toUpperCase()
+    });
+    console.log("end of submitNewWordle")
+    setlastGeneratedWordleLink(`localhost:3000/${wordleId}`)
+  }
+
   
   return (
     <div className="App">
       <nav>
         <h1>Wordle</h1>
-        <input type="text" ref={newCustomWordleTextInputRef} />
+        <input type="text" value={newWordle} onChange={e => setNewWordle(e.target.value)} ref={newCustomWordleTextInputRef} />
+        <button onClick={submitNewWordle}>create new wordle</button>
+        {lastGeneratedWordleLink === "localhost:3000/" ? null : <GeneratedLink lastGeneratedWordleLink={lastGeneratedWordleLink}/>}
       </nav>
       <AppContext.Provider value={{
         board,
