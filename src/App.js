@@ -29,7 +29,9 @@ function App() {
   useEffect(() => {
     const wordId = window.location.pathname
     const cleanedWordId = wordId.substring(1);
-    const docRef = doc(db, "main", cleanedWordId);
+    
+    if (cleanedWordId.length > 0 ) {
+      const docRef = doc(db, "main", cleanedWordId);
     const getUsers = async () => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -39,7 +41,10 @@ function App() {
         console.log("No such document!");
       }
     }
-    getUsers()
+
+      getUsers()
+    }
+    
   }, [])
 
   const onSelectLetter = (keyVal) => {
@@ -65,7 +70,6 @@ function App() {
       currWord += board[currAttempt.attempt][i];
     }
 
-    console.log(currWord)
     if (wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
     } else {
@@ -98,11 +102,12 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <h1>Wordle</h1>
+        <h1>Custom Wordle Maker</h1>
         <input type="text" value={newWordle} onChange={e => setNewWordle(e.target.value)} ref={newCustomWordleTextInputRef} />
         <button onClick={submitNewWordle}>create new wordle</button>
         {lastGeneratedWordleLink === "localhost:3000/" ? null : <GeneratedLink lastGeneratedWordleLink={lastGeneratedWordleLink}/>}
       </nav>
+      
       <AppContext.Provider value={{
         board,
         setBoard,
