@@ -124,7 +124,7 @@ function App() {
         {cleanedWordId ?
           <div className='game'>
             <Board />
-            {gameOver.gameOver ? <GameOver /> : < Keyboard newCustomWordleTextInputRef={newCustomWordleTextInputRef} />}
+            {gameOver.gameOver ? <GameOver newCustomWordleTextInputRef= {newCustomWordleTextInputRef} notify = {notify} /> : < Keyboard newCustomWordleTextInputRef={newCustomWordleTextInputRef} />}
           </div>
           :
           <CreateGame newCustomWordleTextInputRef={newCustomWordleTextInputRef} notify={notify}/>

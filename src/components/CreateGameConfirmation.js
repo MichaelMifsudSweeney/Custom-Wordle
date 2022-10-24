@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { db } from '../firebase-config'
 import { doc, setDoc } from 'firebase/firestore';
 import CopyIcon from '../assets/content_copy_FILL0_wght400_GRAD0_opsz40.svg';
-function CreateGame({ newCustomWordleTextInputRef, notify }) {
+function CreateGameConfirmation({ newCustomWordleTextInputRef, notify }) {
     const [newWordle, setNewWordle] = useState("")
     const [lastGeneratedWordleLink, setlastGeneratedWordleLink] = useState("localhost:3000/")
     
@@ -36,4 +36,4 @@ function CreateGame({ newCustomWordleTextInputRef, notify }) {
     )
 }
 
-export default CreateGame
+export default CreateGameConfirmation
