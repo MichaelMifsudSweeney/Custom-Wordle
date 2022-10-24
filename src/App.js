@@ -6,7 +6,7 @@ import { boardDefault, generateWordSet } from './components/Words';
 import GameOver from './components/GameOver';
 import { db } from './firebase-config'
 import { collection, getDoc, doc, setDoc } from 'firebase/firestore';
-
+import toast, { Toaster } from 'react-hot-toast';
 import CreateGame from './components/CreateGame';
 export const AppContext = createContext();
 function App() {
@@ -17,7 +17,7 @@ function App() {
   const [disabledLetters, setDisabledLetter] = useState([]);
   const [gameOver, setGameOver] = useState({ gameOver: false, guessedWord: false })
   const newCustomWordleTextInputRef = useRef();
-
+  const notify = () => toast('Copied to Clipboard! 📋');
   const wordId = window.location.pathname
   const cleanedWordId = wordId.substring(1);
   useEffect(() => {
@@ -91,6 +91,16 @@ function App() {
 
   return (
     <div className="App">
+      <Toaster
+        toastOptions={{
+          className: '',
+          style: {
+            border: '1px solid #713200',
+            padding: '16px',
+            color: '#713200',
+          },
+        }}
+      />
       <nav>
         <h1>Custom Wordle Maker</h1>
       </nav>
@@ -117,7 +127,7 @@ function App() {
             {gameOver.gameOver ? <GameOver /> : < Keyboard newCustomWordleTextInputRef={newCustomWordleTextInputRef} />}
           </div>
           :
-          <CreateGame newCustomWordleTextInputRef={newCustomWordleTextInputRef} />
+          <CreateGame newCustomWordleTextInputRef={newCustomWordleTextInputRef} notify={notify}/>
         }
       </AppContext.Provider>
 
