@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Letter from './Letter';
-import { boardDefault } from './Words';
+import Letter from '../Letter/Letter';
+import { boardDefault } from '../Words/Words';
 
 function Board() {
     

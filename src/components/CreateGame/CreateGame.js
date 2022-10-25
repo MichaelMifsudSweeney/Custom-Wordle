@@ -1,10 +1,10 @@
 import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import GeneratedLink from './GeneratedLink';
+import GeneratedLink from '../GeneratedLink/GeneratedLink';
 import { useState } from 'react';
-import { db } from '../firebase-config'
+import { db } from '../../firebase-config'
 import { doc, setDoc } from 'firebase/firestore';
-import CopyIcon from '../assets/content_copy_FILL0_wght400_GRAD0_opsz40.svg';
+import CopyIcon from '../../assets/content_copy_FILL0_wght400_GRAD0_opsz40.svg';
 function CreateGame({ newCustomWordleTextInputRef, notify }) {
     const [newWordle, setNewWordle] = useState("")
     const [lastGeneratedWordleLink, setlastGeneratedWordleLink] = useState("localhost:3000/")

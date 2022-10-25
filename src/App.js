@@ -1,13 +1,14 @@
-import './App.css';
-import Board from './components/Board';
-import Keyboard from './components/Keyboard';
+import './App.scss';
+import Board from './components/Board/Board';
+import Keyboard from './components/Keyboard/Keyboard';
 import { createContext, useEffect, useState, useRef } from 'react';
-import { boardDefault, generateWordSet } from './components/Words';
-import GameOver from './components/GameOver';
+import { boardDefault, generateWordSet } from './components/Words/Words';
+import GameOver from './components/GameOver/GameOver';
 import { db } from './firebase-config'
 import { collection, getDoc, doc, setDoc } from 'firebase/firestore';
 import toast, { Toaster } from 'react-hot-toast';
-import CreateGame from './components/CreateGame';
+import CreateGame from './components/CreateGame/CreateGame';
+import Nav from './components/Nav/Nav';
 export const AppContext = createContext();
 function App() {
   const [board, setBoard] = useState(boardDefault);
@@ -90,7 +91,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="app">
       <Toaster
         toastOptions={{
           className: '',
@@ -101,9 +102,7 @@ function App() {
           },
         }}
       />
-      <nav>
-        <h1>Custom Wordle Maker</h1>
-      </nav>
+      <Nav />
 
 
 

@@ -1,6 +1,6 @@
 import React, { useContext, useCallback, useEffect } from 'react'
-import Key from './Key';
-import {AppContext} from "../App"
+import Key from '../Key/Key';
+import {AppContext} from "../../App"
 import { v4 as uuidv4 } from 'uuid';
 
 function Keyboard({newCustomWordleTextInputRef}) {

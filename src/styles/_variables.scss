@@ -1,0 +1,30 @@
+// SCREEN SIZING
+
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1280px;
+
+// COLORS
+
+$primary: #000000; 
+$secondary: rgba(0, 0, 0, 0.5);
+$action: hsl(209, 100%, 50%); 
+$action-hover: #034e93; 
+$positive-emphasis:#30D158;
+$destructive-action:rgb(255, 0, 0);
+$destructive-action-hover:rgb(128, 3, 3);
+$positive-bg:rgba(48, 209, 88, 0.1);
+$negative-bg:rgba(255, 0, 0, 0.1);
+$subtle-bg: rgba(0, 0, 0, 0.173);
+
+// SPACING
+
+$spacing-1: .25rem;
+$spacing-2: .5rem;
+$spacing-3: 1rem;
+$spacing-4: 1.5rem;
+$spacing-5: 2rem;
+$spacing-6: 2.5rem;
+$spacing-7: 3rem;
+$spacing-8: 3.5rem;
+$spacing-9: 4rem;
+$spacing-10: 5rem;

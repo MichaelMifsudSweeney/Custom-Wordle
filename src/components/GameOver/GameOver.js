@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import { AppContext } from '../App'
-import CreateGameConfirmation from './CreateGameConfirmation'
-import '../App.css';
+import { AppContext } from '../../App'
+import CreateGameConfirmation from '../CreateGameConfirmation/CreateGameConfirmation'
+import '../../App.scss';
 function GameOver({ newCustomWordleTextInputRef, notify }) {
 
   const { gameOver, setGameOver, currAttempt, correctWord } = useContext(AppContext)
@@ -9,10 +9,10 @@ function GameOver({ newCustomWordleTextInputRef, notify }) {
   return (
     <div className='gameOver'>
       <div className="gameOver__content">
-        <h3 gameOver__subhead>{gameOver.guessedWord ? "You are CORRECT! 🎉" : "You Failed!"} </h3>
+        <h3 className="gameOver__subhead">{gameOver.guessedWord ? "You are CORRECT! 🎉" : "You Failed!"} </h3>
         <div className="gameOver__stats">
-          <h1> Correct Word: {correctWord}</h1>
-          {gameOver.guessedWord && (<h3>You Guessed in {currAttempt.attempt} attempts</h3>)}
+          <p> Correct Word: {correctWord}</p>
+          {gameOver.guessedWord && (<p>You Guessed in {currAttempt.attempt} attempts</p>)}
         </div>
         <CreateGameConfirmation newCustomWordleTextInputRef={newCustomWordleTextInputRef} notify={notify} />
       </div>
