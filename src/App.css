@@ -14,6 +14,7 @@
 body {
   padding: 0%;
   margin: 0;
+  font-family: sans-serif;
 }
 
 nav {
@@ -141,6 +142,7 @@ nav h1 {
 .gameOver {
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
+  width: 100%;
   top: 0;
   left: 0;
   width: 100%;
@@ -152,6 +154,8 @@ nav h1 {
 
 .gameOver__content {
   background-color: rgba(30, 30, 30, 1);
+  width: 100%;
+  margin: 20px;
   padding: 20px;
   border-radius: 4px;
 

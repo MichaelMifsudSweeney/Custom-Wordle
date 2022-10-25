@@ -8,14 +8,14 @@ import CopyIcon from '../assets/content_copy_FILL0_wght400_GRAD0_opsz40.svg';
 function CreateGameConfirmation({ newCustomWordleTextInputRef, notify }) {
     const [newWordle, setNewWordle] = useState("")
     const [lastGeneratedWordleLink, setlastGeneratedWordleLink] = useState("localhost:3000/")
-    
+
     const submitNewWordle = async () => {
         let wordleId = uuidv4()
         await setDoc(doc(db, "main", wordleId), {
             word: newWordle.toUpperCase()
         });
         setlastGeneratedWordleLink(`localhost:3000/${wordleId}`)
-        
+
     }
 
     const copyHandler = () => {
@@ -25,12 +25,16 @@ function CreateGameConfirmation({ newCustomWordleTextInputRef, notify }) {
 
     return (
         <>
-            <div>CreateGame</div>
-            <p>Hey there! Create a custom wordle and send it to your friends!</p>
-            <img src={CopyIcon} alt="Copy Icon" onClick={copyHandler} />
-            <input type="text" value={newWordle} onChange={e => setNewWordle(e.target.value)} ref={newCustomWordleTextInputRef} />
-            <button onClick={submitNewWordle}>create new wordle</button>
-            {lastGeneratedWordleLink === "localhost:3000/" ? null : <GeneratedLink lastGeneratedWordleLink={lastGeneratedWordleLink} />}
+            <div className="create-game-section">
+                
+                <h3>Send a new Wordle</h3>
+                
+                <input type="text" className='create-game-section__text-field' value={newWordle} onChange={e => setNewWordle(e.target.value)} ref={newCustomWordleTextInputRef} />
+                <button className='create-game-section__create-wordle-button' onClick={submitNewWordle}>create new wordle</button>
+                {/* {lastGeneratedWordleLink === "localhost:3000/" ? null : <GeneratedLink lastGeneratedWordleLink={lastGeneratedWordleLink} />} */}
+                
+                <button onClick={copyHandler}>Copy Link to New Wordle</button>
+            </div>
         </>
 
     )
