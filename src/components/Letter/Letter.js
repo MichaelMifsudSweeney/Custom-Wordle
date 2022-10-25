@@ -1,6 +1,6 @@
 import React, { useContext, useEffect} from 'react'
 import {AppContext} from "../../App"
-
+import './Letter.scss'
 function Letter({letterPos, attemptVal}) {
     const { board, correctWord, currAttempt, setDisabledLetter } = useContext(AppContext);
     const letter = board[attemptVal][letterPos];

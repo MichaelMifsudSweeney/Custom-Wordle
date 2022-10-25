@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { AppContext } from '../../App'
 import CreateGameConfirmation from '../CreateGameConfirmation/CreateGameConfirmation'
-import '../../App.scss';
+import './GameOver.scss'
 function GameOver({ newCustomWordleTextInputRef, notify }) {
 
   const { gameOver, setGameOver, currAttempt, correctWord } = useContext(AppContext)

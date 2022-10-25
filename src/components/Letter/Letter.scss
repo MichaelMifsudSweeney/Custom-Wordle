@@ -1,0 +1,30 @@
+
+.letter {
+    width: 62px;
+    display: flex;
+    height: 62px;
+    flex-shrink: 0;
+    border: 1px solid grey;
+    
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  #correct {
+    background-color: #528d4e;
+    border: 1px solid black;
+  }
+  
+  #almost {
+    background-color: #b49f39;
+    border: 1px solid black;
+  }
+  
+  #error {
+    background-color: #3a393c;
+    border: 1px solid black;
+  }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Letter from '../Letter/Letter';
 import { boardDefault } from '../Words/Words';
-
+import './Board.scss'
 function Board() {
     
     return <div className='board'>

@@ -2,7 +2,7 @@ import React, { useContext, useCallback, useEffect } from 'react'
 import Key from '../Key/Key';
 import {AppContext} from "../../App"
 import { v4 as uuidv4 } from 'uuid';
-
+import './Keyboard.scss'
 function Keyboard({newCustomWordleTextInputRef}) {
   const { onEnter, onDelete, onSelectLetter,  disabledLetters} = useContext(AppContext);
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];

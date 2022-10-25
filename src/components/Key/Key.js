@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import {AppContext} from "../../App"
-
+import './Key.scss'
 function Key( {keyVal, bigKey, disabled }) {
     const { onSelectLetter, onDelete, onEnter} = useContext(AppContext);
 

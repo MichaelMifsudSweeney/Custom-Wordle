@@ -1,0 +1,16 @@
+.board {
+    width: 450px;
+    height: 550px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+  }
