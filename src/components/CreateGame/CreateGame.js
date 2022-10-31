@@ -18,7 +18,7 @@ function CreateGame({ newCustomWordleTextInputRef, notify }) {
             word: newWordle.toUpperCase()
         });
         setSubmittedWordleWord(newWordle)
-        setlastGeneratedWordleLink(`localhost:3000/${wordleId}`)
+        setlastGeneratedWordleLink(process.env.REACT_APP_SITE_URL + wordleId)
         
     }
 
