@@ -1,0 +1,43 @@
+@use '../../styles/globals';
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.create-game-section {
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    
+    width: 100%;
+    height: calc(100vh - 59px);
+    align-items: center;
+    color: white;
+
+    &__container {
+        display: flex;
+    flex-direction: column;
+    gap: 6px;
+    
+    padding-top: 100px;
+    }
+
+    &__subhead {
+        @include subhead;
+    }
+
+    &__create-wordle-button {
+        @include full-width-buttons;
+        background-color: #52ABFF;
+        &--disabled {
+            opacity: 0.5;
+        }
+    }
+
+    &__copy-link-button {
+        @include full-width-buttons;
+        background: none;
+    }
+
+    &__text-field {
+        @include wordle-input
+    }
+}

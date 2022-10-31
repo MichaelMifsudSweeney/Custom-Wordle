@@ -5,15 +5,19 @@ import { useState } from 'react';
 import { db } from '../../firebase-config'
 import { doc, setDoc } from 'firebase/firestore';
 import CopyIcon from '../../assets/content_copy_FILL0_wght400_GRAD0_opsz40.svg';
+import './CreateGame.scss'
+import { generateWordSet } from '../Words/Words';
 function CreateGame({ newCustomWordleTextInputRef, notify }) {
     const [newWordle, setNewWordle] = useState("")
-    const [lastGeneratedWordleLink, setlastGeneratedWordleLink] = useState("localhost:3000/")
+    const [lastGeneratedWordleLink, setlastGeneratedWordleLink] = useState("")
+    const [submittedWordleWord, setSubmittedWordleWord] = useState("")
     
     const submitNewWordle = async () => {
         let wordleId = uuidv4()
         await setDoc(doc(db, "main", wordleId), {
             word: newWordle.toUpperCase()
         });
+        setSubmittedWordleWord(newWordle)
         setlastGeneratedWordleLink(`localhost:3000/${wordleId}`)
         
     }
@@ -25,12 +29,15 @@ function CreateGame({ newCustomWordleTextInputRef, notify }) {
 
     return (
         <>
-            <div>CreateGame</div>
-            <p>Hey there! Create a custom wordle and send it to your friends!</p>
-            <img src={CopyIcon} alt="Copy Icon" onClick={copyHandler} />
-            <input type="text" value={newWordle} onChange={e => setNewWordle(e.target.value)} ref={newCustomWordleTextInputRef} />
-            <button onClick={submitNewWordle}>create new wordle</button>
-            {lastGeneratedWordleLink === "localhost:3000/" ? null : <GeneratedLink lastGeneratedWordleLink={lastGeneratedWordleLink} />}
+            <div className="create-game-section">
+                <div className="create-game-section__container">
+                <h3 className='create-game-section__subhead'>Send a New Wordle</h3>
+                
+                <input type="text" className='create-game-section__text-field' placeholder='New Wordle' value={newWordle} onChange={e => setNewWordle(e.target.value)} ref={newCustomWordleTextInputRef} />
+                <button className={`create-game-section__create-wordle-button ${submittedWordleWord === newWordle && lastGeneratedWordleLink.length !== 0 ? "create-game-section__create-wordle-button--disabled" : ""}`} onClick={submitNewWordle}>{submittedWordleWord === newWordle && lastGeneratedWordleLink.length !== 0 ? "Created ✅" : "Create"}</button>
+                {lastGeneratedWordleLink.length === 0 ? null : <button className='create-game-section__copy-link-button' onClick={copyHandler}>Copy Link to Clipboard</button>}
+                </div>
+            </div>
         </>
 
     )

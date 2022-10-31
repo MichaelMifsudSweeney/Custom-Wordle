@@ -1,0 +1,31 @@
+@use '../../styles/globals';
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.create-game-confirmation-section {
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 6px;
+    padding-top: 30px;
+    align-items: center;
+
+    &__subhead {
+        @include subhead;
+    }
+
+    &__create-wordle-button {
+        @include full-width-buttons;
+        background-color: #52ABFF;
+    }
+
+    &__copy-link-button {
+        @include full-width-buttons;
+        background: none;
+    }
+
+    &__text-field {
+        @include wordle-input
+    }
+}

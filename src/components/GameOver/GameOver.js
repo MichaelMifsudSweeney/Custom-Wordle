@@ -11,8 +11,8 @@ function GameOver({ newCustomWordleTextInputRef, notify }) {
       <div className="gameOver__content">
         <h3 className="gameOver__subhead">{gameOver.guessedWord ? "You are CORRECT! 🎉" : "You Failed!"} </h3>
         <div className="gameOver__stats">
-          <p> Correct Word: {correctWord}</p>
-          {gameOver.guessedWord && (<p>You Guessed in {currAttempt.attempt} attempts</p>)}
+          <p> Correct Word: <b> {correctWord}</b></p>
+          {gameOver.guessedWord && (<p>You Guessed in <b> {currAttempt.attempt} {`Attempt${currAttempt.attempt === 1 ?"" : "s"}`}</b></p>)}
         </div>
         <CreateGameConfirmation newCustomWordleTextInputRef={newCustomWordleTextInputRef} notify={notify} />
       </div>
