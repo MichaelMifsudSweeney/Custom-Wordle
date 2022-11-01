@@ -70,6 +70,11 @@ function App() {
       currWord += board[currAttempt.attempt][i];
     }
 
+    if (currWord === correctWord) {
+      setGameOver({ gameOver: true, guessedWord: true })
+      return;
+    }
+
     if (wordSet.has(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
     } else {
@@ -77,16 +82,10 @@ function App() {
       
     }
 
-    if (currWord === correctWord) {
-      setGameOver({ gameOver: true, guessedWord: true })
-      return;
-    }
-
     if (currAttempt.attempt === 4) {
       setGameOver({ gameOver: true, guessedWord: false })
       
     }
-
 
   }
 
