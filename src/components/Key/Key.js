@@ -15,7 +15,7 @@ function Key({ keyVal, bigKey, disabled }) {
         }
 
     }
-    console.log(bigKey)
+    
     return (
         <div className='key' id={bigKey ? "big" : disabled ?  "disabled" : ""} onClick={selectLetter}>
             {keyVal === "DELETE"
