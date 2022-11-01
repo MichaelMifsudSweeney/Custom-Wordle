@@ -62,17 +62,12 @@ function App() {
   }
 
   const onEnter = () => {
+    
     if (currAttempt.letterPos !== 5) return;
     let currWord = "";
+    
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
-    }
-
-    if (wordSet.has(currWord.toLowerCase())) {
-      setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
-    } else {
-      alert("Word Not Found")
-      console.log(wordSet)
     }
 
     if (currWord === correctWord) {
@@ -80,16 +75,23 @@ function App() {
       return;
     }
 
-    if (currAttempt.attempt === 5) {
-      setGameOver({ gameOver: true, guessedWord: false })
+    if (wordSet.has(currWord.toLowerCase())) {
+      setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
+    } else {
+      alert("Word Not Found")
+      
     }
 
+    if (currAttempt.attempt === 4) {
+      setGameOver({ gameOver: true, guessedWord: false })
+      
+    }
 
   }
 
 
 
-
+  
   return (
     <div className="app">
       <Toaster
@@ -120,6 +122,7 @@ function App() {
         setGameOver,
         gameOver
       }}>
+      {/* if there's a url display everything inside .game, otherwise show the create game screen */}
         {cleanedWordId ?
           <div className='game'>
             <Board />

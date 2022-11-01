@@ -40,4 +40,11 @@
     &__text-field {
         @include wordle-input
     }
+
+    &__error-text {
+        color: rgb(242, 61, 61);
+        text-align: center;
+        font-weight: 400;
+        font-size: 14px;
+    }
 }
