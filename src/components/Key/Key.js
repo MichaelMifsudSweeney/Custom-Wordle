@@ -15,9 +15,9 @@ function Key({ keyVal, bigKey, disabled }) {
         }
 
     }
-
+    console.log(bigKey)
     return (
-        <div className='key' id={bigKey ? "big" : disabled && "disabled"} onClick={selectLetter}>
+        <div className='key' id={bigKey ? "big" : disabled ?  "disabled" : ""} onClick={selectLetter}>
             {keyVal === "DELETE"
                 ? <img className='key__backspace-icon' src={backspaceIcon} alt="Backspace Icon" />
                 : keyVal
