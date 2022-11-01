@@ -9,7 +9,7 @@ function GameOver({ newCustomWordleTextInputRef, notify }) {
   return (
     <div className='gameOver'>
       <div className="gameOver__content">
-        <h3 className="gameOver__subhead">{gameOver.guessedWord ? "You are CORRECT! 🎉" : "You Failed!"} </h3>
+        <h3 className="gameOver__subhead">{gameOver.guessedWord ? "You are CORRECT! 🎉" : "Sorry! You are INCORRECT 🫢"} </h3>
         <div className="gameOver__stats">
           <p> Correct Word: <b> {correctWord}</b></p>
           {gameOver.guessedWord && (<p>You Guessed in <b> {currAttempt.attempt} {`Attempt${currAttempt.attempt === 1 ?"" : "s"}`}</b></p>)}
