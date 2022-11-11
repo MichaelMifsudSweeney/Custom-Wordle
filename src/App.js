@@ -98,9 +98,10 @@ function App() {
         toastOptions={{
           className: '',
           style: {
-            border: '1px solid #713200',
-            padding: '16px',
-            color: '#713200',
+            padding: '8px',
+            fontWeight: 'bold',
+            color: 'white',
+            backgroundColor: '#52ABFF'
           },
         }}
       />
