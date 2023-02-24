@@ -16,6 +16,7 @@ function App() {
   const [correctWord, setCorrectWord] = useState("")
   const [wordSet, setWordSet] = useState(new Set())
   const [disabledLetters, setDisabledLetter] = useState([]);
+  const [commitedLetters, setCommitedLetters] = useState({})
   const [gameOver, setGameOver] = useState({ gameOver: false, guessedWord: false })
   const newCustomWordleTextInputRef = useRef();
   const notify = () => toast('Copied to Clipboard! 📋');
@@ -26,7 +27,7 @@ function App() {
       setWordSet(words.wordSet);
     })
   }, [])
-
+  
   useEffect(() => {
     if (cleanedWordId.length > 0) {
       const docRef = doc(db, "main", cleanedWordId);
@@ -44,6 +45,11 @@ function App() {
     }
 
   }, [])
+
+
+  useEffect(() => {
+    console.log("commited letters" + commitedLetters)
+  }, [commitedLetters])
 
   const onSelectLetter = (keyVal) => {
     if (currAttempt.letterPos > 4) return;
@@ -75,7 +81,45 @@ function App() {
       return;
     }
 
+    //if it's a legit word
     if (wordSet.has(currWord.toLowerCase())) {
+      // for each letter, check if it exists in the object
+          //if it does not, add a key of the letter and a value of the status
+          //if it does exist
+            //if the status of the current letter is INCORRECT do nothing
+            //if the status of the current letter is ALMOST && the one already in the object is also ALMOST
+                //do nothing
+            //if the status of the current letter is CORRECT && the status of the one in the one in the object is ALMOST
+              //update the value to CORRECT
+      let oldCommitedLetters = commitedLetters
+      let splitCorrectWord = correctWord.split("")
+      let currWordSplit = currWord.split("")
+      currWordSplit.forEach((letter, index) => {
+        //if the letter exists in the commited words already
+        
+          
+        
+            //if the correct word includes this letter but the letter is in the wrong position
+            if(splitCorrectWord.includes(letter) && splitCorrectWord[index] !== letter) {
+              console.log(letter, oldCommitedLetters[letter])
+              if(oldCommitedLetters[letter] === 'CORRECT') {
+                
+              } else {
+                oldCommitedLetters[letter] = 'ALMOST'    
+              }
+              
+              
+              
+            } else if (splitCorrectWord.includes(letter) && splitCorrectWord[index] === letter){
+              oldCommitedLetters[letter] = 'CORRECT'
+            } else {
+              oldCommitedLetters[letter] = 'WRONG'
+            }
+          
+        
+        console.log(letter, oldCommitedLetters)
+      })
+      setCommitedLetters(oldCommitedLetters)
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
     } else {
       alert("Word Not Found")
@@ -121,7 +165,9 @@ function App() {
         setDisabledLetter,
         disabledLetters,
         setGameOver,
-        gameOver
+        gameOver, 
+        commitedLetters, 
+        setCommitedLetters
       }}>
       {/* if there's a url display everything inside .game, otherwise show the create game screen */}
         {cleanedWordId ?
