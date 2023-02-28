@@ -17,15 +17,11 @@ function Key({ keyVal, bigKey, disabled }) {
         }
 
     }
-<<<<<<< HEAD
-    
-=======
 
     let keyStatus = ''
     
 
-    // console.log(bigKey)
->>>>>>> 1a30bbb (add logic and styling for keys)
+    
     return (
         <div className={`key ${commitedLetters[keyVal] ? commitedLetters[keyVal] : '' }`} id={bigKey ? "big" : disabled ?  "disabled" : ""} onClick={selectLetter}>
             {keyVal === "DELETE"
